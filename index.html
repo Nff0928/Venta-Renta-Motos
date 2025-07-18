@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="styleSheet">
+    <title>MotoStore - Venta y Alquiler de Motocicletas</title>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">🏍️ MotoStore</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#comprar">Comprar</a></li>
+                    <li><a href="#alquilar">Alquilar</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cart-icon" onclick="openCart()">
+                🛒 Carrito
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Tu Moto Perfecta Te Está Esperando</h1>
+            <p>Encuentra la motocicleta ideal para ti. Compra o alquila con la mejor calidad y servicio</p>
+            <a href="#comprar" class="btn">Ver Catálogo</a>
+            <a href="#alquilar" class="btn btn-secondary">Alquilar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Services Section -->
+        <section class="section" id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-icon">🏪</div>
+                    <h3>Venta de Motocicletas</h3>
+                    <p>Amplio catálogo de motos nuevas y usadas con garantía y financiamiento disponible</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <h3>Alquiler por Días</h3>
+                    <p>Alquila la moto que necesites por el tiempo que desees, desde un día hasta varios meses</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Servicio Técnico</h3>
+                    <p>Mantenimiento y reparación de motocicletas con técnicos especializados</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buy Section -->
+        <section class="section" id="comprar">
+            <h2>Comprar Motocicletas</h2>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterProducts('all')">Todas</button>
+                <button class="filter-btn" onclick="filterProducts('sport')">Deportivas</button>
+                <button class="filter-btn" onclick="filterProducts('cruiser')">Cruiser</button>
+                <button class="filter-btn" onclick="filterProducts('touring')">Touring</button>
+                <button class="filter-btn" onclick="filterProducts('naked')">Naked</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Rental Section -->
+        <section class="section" id="alquilar">
+            <h2>Alquiler de Motocicletas</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #7f8c8d; font-size: 1.1rem;">
+                Alquila la moto perfecta para tu aventura. Tarifas flexibles y servicio premium.
+            </p>
+
+            <div class="rental-form">
+                <h3 style="margin-bottom: 1.5rem; color: #2c3e50;">Solicitar Alquiler</h3>
+                <form id="rentalForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rentalStart">Fecha de Inicio</label>
+                            <input type="date" id="rentalStart" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rentalEnd">Fecha de Fin</label>
+                            <input type="date" id="rentalEnd" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rentalMoto">Motocicleta</label>
+                        <select id="rentalMoto" required>
+                            <option value="">Seleccionar motocicleta</option>
+                            <option value="yamaha-r1">Yamaha R1 - $50/día</option>
+                            <option value="kawasaki-z900">Kawasaki Z900 - $45/día</option>
+                            <option value="honda-cb650r">Honda CB650R - $40/día</option>
+                            <option value="ducati-monster">Ducati Monster - $55/día</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Nombre Completo</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Teléfono</label>
+                            <input type="tel" id="customerPhone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="licenseNumber">Número de Licencia</label>
+                        <input type="text" id="licenseNumber" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Solicitar Alquiler</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div id="cartItems">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Total: $0
+            </div>
+            <button class="btn" onclick="checkout()" style="width: 100%; margin-top: 1rem;">
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>MotoStore</h3>
+                    <p>Tu tienda de confianza para motocicletas. Calidad, servicio y pasión por las dos ruedas.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📍 Calle Principal 123, Ciudad</p>
+                    <p>📞 +1 234 567 8900</p>
+                    <p>📧 info@motostore.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Horarios</h3>
+                    <p>Lunes - Viernes: 9:00 - 19:00</p>
+                    <p>Sábados: 9:00 - 17:00</p>
+                    <p>Domingos: 10:00 - 15:00</p>
+                </div>
+            </div>
+            <p>&copy; 2025 MotoStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    
+
+    <script src="js/funciones.js"></script>
+</body>
+</html>
